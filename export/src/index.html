@@ -1,0 +1,1055 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Flør Jerez Art — Painting the space between nature and emotion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="ext-resource-dependency" content="assets/hero-brushstrokes.webp" data-resource-id="heroBrushstrokes">
+<meta name="ext-resource-dependency" content="assets/process-painting.webp" data-resource-id="processPainting">
+<meta name="ext-resource-dependency" content="assets/earth-brushstrokes.webp" data-resource-id="earthBrushstrokes">
+<meta name="ext-resource-dependency" content="assets/frog-detail.webp" data-resource-id="frogDetail">
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+    <rect width="200" height="200" fill="#F0F2EB"/>
+    <g transform="translate(100 110)">
+      <circle r="48" fill="none" stroke="#3B564D" stroke-width="0.8"/>
+      <circle r="22" fill="#E7B4A9"/>
+    </g>
+    <text x="100" y="180" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="14" fill="#3B564D">Flør Jerez Art</text>
+  </svg>
+</template>
+
+<style>
+  :root{
+    --cream:#F0F2EB;
+    --green-deep:#3B564D;
+    --green-mid:#7C8966;
+    --green-light:#AFB593;
+    --blush:#E7B4A9;
+    --sage:#D2D5C4;
+    --ink:#2A3A33;
+    --hairline: rgba(59,86,77,0.18);
+    --serif:'Cormorant Garamond', 'Times New Roman', serif;
+    --sans:'Jost', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-weight:300;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    letter-spacing:0.005em;
+  }
+  img,video{display:block;max-width:100%;height:auto}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+
+  /* ——— Type system ——— */
+  .eyebrow{
+    font-family:var(--sans);
+    font-size:11px;
+    font-weight:400;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--green-mid);
+  }
+  .display{
+    font-family:var(--serif);
+    font-weight:300;
+    line-height:1.02;
+    letter-spacing:-0.012em;
+    color:var(--green-deep);
+  }
+  .display em{font-style:italic;font-weight:400}
+  .lede{
+    font-family:var(--sans);
+    font-weight:300;
+    font-size:15px;
+    line-height:1.7;
+    letter-spacing:0.01em;
+  }
+
+  /* ——— Layout shells ——— */
+  .wrap{ width:min(1320px, 92vw); margin:0 auto; }
+  .wrap-narrow{ width:min(1080px, 90vw); margin:0 auto; }
+  section{ position:relative; }
+  .hairline{ border:0; border-top:0.5px solid var(--hairline); margin:0; }
+
+  /* ——— NAV ——— */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:60;
+    padding:18px 0;
+    transition: background 320ms ease, backdrop-filter 320ms ease, border-color 320ms ease, padding 320ms ease;
+    border-bottom:0.5px solid transparent;
+  }
+  .nav.scrolled{
+    background:rgba(240,242,235,0.72);
+    backdrop-filter:saturate(140%) blur(14px);
+    -webkit-backdrop-filter:saturate(140%) blur(14px);
+    border-bottom-color:var(--hairline);
+    padding:12px 0;
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+  }
+  .brand{
+    font-family:var(--serif);
+    font-size:22px;
+    font-weight:400;
+    color:var(--green-deep);
+    letter-spacing:0.005em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .brand .mark{
+    width:18px; height:18px; border-radius:50%;
+    border:0.5px solid var(--green-deep);
+    position:relative;
+    display:inline-block;
+  }
+  .brand .mark::after{
+    content:""; position:absolute; inset:4px; border-radius:50%;
+    background:var(--blush);
+  }
+  .nav-links{
+    display:flex; align-items:center; gap:34px;
+    font-size:13px; font-weight:300; color:var(--green-deep);
+  }
+  .nav-links a{ position:relative; padding:6px 0; letter-spacing:0.04em; }
+  .nav-links a::after{
+    content:""; position:absolute; left:0; right:100%; bottom:0;
+    height:0.5px; background:var(--green-deep);
+    transition: right 320ms ease;
+  }
+  .nav-links a:hover::after{ right:0; }
+  .nav-cta{
+    font-family:var(--sans); font-weight:400; font-size:12.5px;
+    background:var(--green-deep); color:var(--cream);
+    padding:10px 22px; border-radius:999px;
+    letter-spacing:0.08em; text-transform:uppercase;
+    transition: background 240ms ease, transform 240ms ease;
+  }
+  .nav-cta:hover{ background:#2f463e; transform:translateY(-1px); }
+  .hamburger{ display:none; width:36px; height:36px; align-items:center; justify-content:center; }
+  .hamburger span{ width:22px; height:0.5px; background:var(--green-deep); position:relative; }
+  .hamburger span::before, .hamburger span::after{
+    content:""; position:absolute; left:0; right:0; height:0.5px; background:var(--green-deep);
+  }
+  .hamburger span::before{ top:-7px; }
+  .hamburger span::after{ top:7px; }
+
+  /* ——— HERO ——— */
+  .hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    position:relative; overflow:hidden;
+    padding-top:96px; padding-bottom:120px;
+  }
+  .hero-media{
+    position:absolute; inset:0; z-index:0;
+    overflow:hidden;
+  }
+  .hero-media .ph{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover;
+    transform:scale(1.04);
+    animation: heroDrift 24s ease-in-out infinite alternate;
+  }
+  @keyframes heroDrift{
+    0%{ transform:scale(1.04) translate3d(0,0,0); }
+    100%{ transform:scale(1.10) translate3d(-1.5%, -1%, 0); }
+  }
+  .hero-media::after{
+    content:""; position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, rgba(240,242,235,0.55) 0%, rgba(240,242,235,0.25) 30%, rgba(240,242,235,0.15) 60%, rgba(240,242,235,0.85) 100%);
+  }
+  .hero-tag-vid{
+    position:absolute; top:120px; left:max(4vw, 32px); z-index:2;
+    font-size:10.5px; letter-spacing:0.24em; text-transform:uppercase;
+    color:var(--green-deep);
+    display:flex; align-items:center; gap:10px;
+    opacity:0.78;
+  }
+  .hero-tag-vid .dot{
+    width:6px; height:6px; border-radius:50%; background:var(--blush);
+    box-shadow:0 0 0 4px rgba(231,180,169,0.18);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:1 } 50%{ opacity:0.35 }
+  }
+  .hero-tag-meta{
+    position:absolute; top:120px; right:max(4vw, 32px); z-index:2;
+    font-size:10.5px; letter-spacing:0.24em; text-transform:uppercase;
+    color:var(--green-deep); opacity:0.78;
+    text-align:right;
+  }
+  .hero-tag-meta div + div{ margin-top:6px; }
+
+  .hero-content{
+    position:relative; z-index:2;
+    margin-top:6vh;
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    padding:0 24px;
+  }
+  .hero-eyebrow{
+    margin-bottom:36px;
+    display:flex; align-items:center; gap:14px;
+    color:var(--green-deep);
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after{
+    content:""; width:36px; height:0.5px; background:currentColor; opacity:0.5;
+  }
+  h1.hero-title{
+    font-family:var(--serif);
+    font-weight:300;
+    color:var(--green-deep);
+    font-size:clamp(44px, 7.4vw, 116px);
+    line-height:0.98;
+    letter-spacing:-0.018em;
+    margin:0;
+    max-width:14ch;
+  }
+  h1.hero-title em{ font-style:italic; font-weight:400; }
+  .hero-sub{
+    margin-top:34px;
+    font-size:14px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--green-deep);
+    opacity:0.85;
+  }
+  .hero-ctas{
+    margin-top:44px;
+    display:flex; gap:14px; flex-wrap:wrap; justify-content:center;
+  }
+  .btn{
+    font-family:var(--sans); font-size:12.5px; font-weight:400;
+    letter-spacing:0.18em; text-transform:uppercase;
+    padding:16px 30px; border-radius:999px;
+    transition: transform 240ms ease, background 240ms ease, color 240ms ease, border-color 240ms ease;
+    display:inline-flex; align-items:center; gap:10px;
+    border:0.5px solid transparent;
+  }
+  .btn-solid{ background:var(--green-deep); color:var(--cream); }
+  .btn-solid:hover{ background:#2f463e; transform:translateY(-1px); }
+  .btn-ghost{
+    background:transparent; color:var(--green-deep);
+    border-color:var(--green-deep);
+  }
+  .btn-ghost:hover{ background:var(--green-deep); color:var(--cream); }
+  .btn .arrow{
+    width:14px; height:0.5px; background:currentColor; position:relative;
+    transition: width 240ms ease;
+  }
+  .btn .arrow::after{
+    content:""; position:absolute; right:0; top:-3px;
+    width:6px; height:6px; border-top:0.5px solid currentColor; border-right:0.5px solid currentColor;
+    transform:rotate(45deg);
+  }
+  .btn:hover .arrow{ width:22px; }
+
+  .hero-scroll{
+    position:absolute; left:50%; bottom:42px; transform:translateX(-50%);
+    z-index:2; font-size:10.5px; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--green-deep); opacity:0.7;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+  }
+  .hero-scroll::after{
+    content:""; width:0.5px; height:48px; background:var(--green-deep); opacity:0.4;
+    animation: scrollHint 2.4s ease-in-out infinite;
+    transform-origin:top;
+  }
+  @keyframes scrollHint{
+    0%,100%{ transform:scaleY(0.4); opacity:0.2 }
+    50%{ transform:scaleY(1); opacity:0.55 }
+  }
+
+  /* ——— ABOUT ——— */
+  .about{
+    padding:140px 0 160px;
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap:96px;
+    align-items:start;
+  }
+  .about-copy .eyebrow{ display:block; margin-bottom:34px; }
+  .about-copy h2{
+    font-family:var(--serif);
+    font-weight:300;
+    color:var(--green-deep);
+    font-size:clamp(44px, 5.4vw, 84px);
+    line-height:1.0;
+    letter-spacing:-0.012em;
+    margin:0 0 14px;
+  }
+  .about-copy .sub{
+    font-family:var(--serif);
+    font-style:italic;
+    font-weight:400;
+    color:var(--green-mid);
+    font-size:clamp(20px, 1.6vw, 26px);
+    margin:0 0 48px;
+  }
+  .about-copy p{
+    font-size:16px; line-height:1.85; max-width:46ch;
+    color:var(--ink); font-weight:300;
+    margin:0 0 22px;
+  }
+  .city-tags{
+    margin-top:48px;
+    display:flex; flex-wrap:wrap; gap:0;
+    align-items:center;
+    font-size:13px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--green-deep);
+  }
+  .city-tags span{ display:inline-flex; align-items:center; }
+  .city-tags span + span::before{
+    content:"·"; margin:0 18px; color:var(--green-light);
+  }
+  .about-portrait{
+    position:relative;
+    aspect-ratio: 4/5;
+    overflow:hidden;
+  }
+  .about-portrait img{
+    width:100%; height:100%; object-fit:cover; object-position: center 18%;
+    transition: transform 1.2s ease;
+  }
+  .about-portrait:hover img{ transform:scale(1.02); }
+  .about-portrait .frame-label{
+    position:absolute; left:18px; bottom:18px;
+    font-size:9.5px; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--cream); opacity:0.7;
+    background:rgba(59,86,77,0.55); padding:6px 10px;
+    backdrop-filter:blur(8px);
+  }
+  .about-meta{
+    position:absolute; right:-1px; top:0; bottom:0;
+    width:0.5px; background:var(--hairline);
+  }
+
+  /* ——— SELECTED WORKS ——— */
+  .works{
+    padding:140px 0 180px;
+    border-top:0.5px solid var(--hairline);
+  }
+  .section-head{
+    display:grid; grid-template-columns: 1fr auto; gap:24px; align-items:end;
+    margin-bottom:80px;
+  }
+  .section-head .eyebrow{ display:block; margin-bottom:28px; }
+  .section-head h2{
+    font-family:var(--serif); font-weight:300; color:var(--green-deep);
+    font-size:clamp(40px, 5vw, 78px);
+    line-height:1.0; letter-spacing:-0.012em;
+    margin:0; max-width:18ch;
+  }
+  .section-head h2 em{ font-style:italic; }
+  .section-head .meta{
+    font-size:11.5px; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--green-mid); text-align:right; line-height:1.7;
+  }
+
+  .works-grid{
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap:48px 36px;
+  }
+  .work{
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+  }
+  .work .img-wrap{
+    position:relative; overflow:hidden;
+    background:var(--sage);
+  }
+  .work img{
+    width:100%; height:100%; object-fit:cover;
+    transition: transform 1.2s cubic-bezier(.2,.7,.2,1);
+  }
+  .work:hover img{ transform:scale(1.04); }
+  .work .overlay{
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(59,86,77,0) 50%, rgba(59,86,77,0.78) 100%);
+    opacity:0; transition: opacity 360ms ease;
+    display:flex; align-items:flex-end; padding:28px;
+  }
+  .work:hover .overlay{ opacity:1; }
+  .work .label{
+    color:var(--cream);
+    transform: translateY(8px);
+    transition: transform 360ms ease;
+  }
+  .work:hover .label{ transform: translateY(0); }
+  .work .label .t{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:30px; line-height:1.0; letter-spacing:-0.005em;
+    margin:0;
+  }
+  .work .label .y{
+    font-family:var(--sans); font-size:11px; letter-spacing:0.22em;
+    text-transform:uppercase; margin-top:8px; opacity:0.85;
+  }
+  .work .num{
+    position:absolute; top:18px; left:18px;
+    font-family:var(--sans); font-size:10.5px; letter-spacing:0.28em;
+    text-transform:uppercase; color:var(--cream); opacity:0;
+    transition: opacity 360ms ease;
+  }
+  .work:hover .num{ opacity:0.9; }
+  .work .caption{
+    margin-top:18px;
+    display:flex; justify-content:space-between; align-items:baseline;
+    border-top:0.5px solid var(--hairline);
+    padding-top:14px;
+    font-size:11.5px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--green-deep);
+  }
+  .work .caption .t2{ font-family:var(--serif); font-style:italic; font-size:18px; letter-spacing:0; text-transform:none; color:var(--green-deep); }
+  .work .caption .meta{ color:var(--green-mid); }
+
+  /* asymmetric layout */
+  .work.w1{ grid-column: 1 / span 6; aspect-ratio: 5/6; }
+  .work.w2{ grid-column: 8 / span 5; aspect-ratio: 4/5; margin-top:80px; }
+  .work.w3{ grid-column: 2 / span 4; aspect-ratio: 3/4; margin-top:24px; }
+  .work.w4{ grid-column: 7 / span 6; aspect-ratio: 5/4; margin-top:-40px; }
+  .work.w1 .img-wrap, .work.w2 .img-wrap, .work.w3 .img-wrap, .work.w4 .img-wrap{ height:100%; }
+
+  .works-foot{
+    margin-top:96px;
+    display:flex; justify-content:center;
+  }
+  .link-arrow{
+    font-size:12px; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--green-deep);
+    display:inline-flex; align-items:center; gap:14px;
+    border-bottom:0.5px solid var(--green-deep);
+    padding-bottom:8px;
+  }
+  .link-arrow .arrow{ width:18px; height:0.5px; background:currentColor; position:relative; }
+  .link-arrow .arrow::after{
+    content:""; position:absolute; right:0; top:-3px;
+    width:6px; height:6px; border-top:0.5px solid currentColor; border-right:0.5px solid currentColor;
+    transform:rotate(45deg);
+  }
+
+  /* ——— PHILOSOPHY ——— */
+  .philo{
+    padding:160px 0 180px;
+    border-top:0.5px solid var(--hairline);
+  }
+  .pull{
+    text-align:center;
+    max-width: 22ch;
+    margin: 0 auto 12px;
+    font-family:var(--serif); font-style:italic; font-weight:300;
+    color:var(--green-deep);
+    font-size:clamp(38px, 5.6vw, 86px);
+    line-height:1.08; letter-spacing:-0.012em;
+  }
+  .pull-quote-marks{
+    display:block; text-align:center;
+    font-family:var(--serif); font-style:italic; font-weight:300;
+    color:var(--blush);
+    font-size:clamp(60px, 8vw, 120px);
+    line-height:1; margin-bottom:8px;
+  }
+  .pull-attr{
+    text-align:center; margin-top:36px;
+    font-size:11.5px; letter-spacing:0.24em; text-transform:uppercase;
+    color:var(--green-mid);
+  }
+  .pull-attr span{ color:var(--green-deep); }
+
+  .philo-grid{
+    margin-top:120px;
+    display:grid; grid-template-columns: 1.05fr 0.95fr;
+    gap:80px; align-items:start;
+  }
+  .video-wrap{
+    position:relative;
+    aspect-ratio: 4/5;
+    border-radius:12px; overflow:hidden;
+    background:var(--sage);
+  }
+  .video-wrap video, .video-wrap img{ width:100%; height:100%; object-fit:cover; }
+  .video-wrap .play{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:84px; height:84px; border-radius:50%;
+    border:0.5px solid var(--cream); color:var(--cream);
+    background:rgba(59,86,77,0.32);
+    backdrop-filter:blur(6px);
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; letter-spacing:0.24em; text-transform:uppercase;
+    transition: background 240ms ease, transform 240ms ease;
+  }
+  .video-wrap .play:hover{ background:rgba(59,86,77,0.55); transform:translate(-50%,-50%) scale(1.04); }
+  .video-wrap .play .tri{
+    width:0; height:0;
+    border-left: 12px solid var(--cream);
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    margin-left:4px;
+  }
+  .video-wrap .vid-label{
+    position:absolute; left:18px; top:18px;
+    font-size:9.5px; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--cream); opacity:0.85;
+    background:rgba(59,86,77,0.55); padding:6px 10px;
+    backdrop-filter:blur(8px);
+  }
+  .philo-blocks{
+    padding-top:24px;
+  }
+  .philo-block{ padding:32px 0; }
+  .philo-block .eyebrow{ display:block; margin-bottom:18px; }
+  .philo-block p{
+    font-family:var(--serif); font-style:italic; font-weight:300;
+    color:var(--green-deep);
+    font-size:clamp(22px, 1.9vw, 30px);
+    line-height:1.45; letter-spacing:-0.005em;
+    margin:0; max-width:34ch;
+  }
+  .philo-block + .philo-block{ border-top:0.5px solid var(--sage); }
+
+  /* ——— EXHIBITIONS ——— */
+  .exh{
+    padding:140px 0 160px;
+    border-top:0.5px solid var(--hairline);
+  }
+  .timeline{
+    margin-top:24px;
+  }
+  .ex-row{
+    display:grid; grid-template-columns: 110px 1.25fr 1fr 0.6fr;
+    gap:32px; align-items:baseline;
+    padding:30px 0;
+    border-bottom:0.5px solid var(--hairline);
+    transition: padding 320ms ease, background 320ms ease;
+    cursor:default;
+  }
+  .ex-row:hover{ padding-left:14px; background:linear-gradient(90deg, rgba(231,180,169,0.06), transparent 60%); }
+  .ex-row .yr{
+    font-family:var(--serif); font-weight:300;
+    font-size:34px; color:var(--green-deep); letter-spacing:-0.005em;
+  }
+  .ex-row .title{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:24px; color:var(--green-deep); letter-spacing:-0.005em;
+  }
+  .ex-row .venue{
+    font-family:var(--sans); font-weight:300; font-size:13.5px;
+    letter-spacing:0.04em; color:var(--ink); opacity:0.85;
+  }
+  .ex-row .place{
+    font-family:var(--sans); font-weight:400; font-size:11px;
+    letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--green-mid); text-align:right;
+  }
+
+  .press{
+    margin-top:80px;
+    padding-top:48px;
+    border-top:0.5px solid var(--hairline);
+    display:grid;
+    grid-template-columns: 200px 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  .press .eyebrow{ padding-top:12px; }
+  .press-pills{
+    display:flex; flex-wrap:wrap; gap:14px;
+  }
+  .press-pill{
+    display:inline-flex; align-items:center; gap:14px;
+    border:0.5px solid var(--green-deep);
+    color:var(--green-deep);
+    padding:12px 22px;
+    border-radius:999px;
+    font-size:12.5px; letter-spacing:0.04em;
+    transition: background 240ms ease, color 240ms ease, transform 240ms ease;
+  }
+  .press-pill:hover{ background:var(--green-deep); color:var(--cream); transform:translateY(-1px); }
+  .press-pill .ext{
+    width:10px; height:10px; position:relative;
+  }
+  .press-pill .ext::before{
+    content:""; position:absolute; inset:0;
+    border-top:0.5px solid currentColor; border-right:0.5px solid currentColor;
+    border-top-right-radius:1px;
+  }
+  .press-pill .ext::after{
+    content:""; position:absolute; left:0; bottom:0;
+    width:7px; height:7px; border:0.5px solid currentColor;
+  }
+
+  /* ——— CONTACT ——— */
+  .contact{
+    background:var(--green-deep);
+    color:var(--cream);
+    padding:160px 0 56px;
+    position:relative;
+  }
+  .contact .eyebrow{ color:var(--blush); display:block; text-align:center; margin-bottom:28px; }
+  .contact h2{
+    font-family:var(--serif); font-style:italic; font-weight:300;
+    text-align:center;
+    font-size:clamp(48px, 6.4vw, 104px);
+    line-height:1.02; letter-spacing:-0.012em;
+    color:var(--cream); margin:0 auto;
+    max-width:14ch;
+  }
+  .contact .sub{
+    text-align:center; margin-top:28px;
+    font-size:15px; font-weight:300; letter-spacing:0.04em;
+    color: rgba(240,242,235,0.78);
+  }
+  .form{
+    margin: 56px auto 0;
+    max-width:580px;
+    display:flex; gap:0;
+    border:0.5px solid rgba(240,242,235,0.45);
+    border-radius:999px;
+    padding:6px 6px 6px 28px;
+    align-items:center;
+    transition: border-color 240ms ease;
+  }
+  .form:focus-within{ border-color:var(--cream); }
+  .form input{
+    flex:1; background:transparent; border:none; outline:none;
+    color:var(--cream); font-family:var(--sans); font-weight:300; font-size:14px;
+    letter-spacing:0.04em; padding:14px 0;
+  }
+  .form input::placeholder{ color: rgba(240,242,235,0.55); }
+  .form button{
+    background:var(--cream); color:var(--green-deep);
+    font-family:var(--sans); font-weight:400; font-size:12px;
+    letter-spacing:0.18em; text-transform:uppercase;
+    padding:14px 26px; border-radius:999px;
+    transition: background 240ms ease, transform 240ms ease;
+    white-space:nowrap;
+  }
+  .form button:hover{ background:#fff; transform:translateY(-1px); }
+
+  .contact-socials{
+    margin-top:60px; padding-top:48px;
+    border-top:0.5px solid rgba(240,242,235,0.18);
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:12.5px; font-weight:300; letter-spacing:0.06em;
+    color:rgba(240,242,235,0.85);
+    flex-wrap:wrap; gap:18px;
+  }
+  .contact-socials a{ display:inline-flex; align-items:center; gap:10px; }
+  .contact-socials a:hover{ color:var(--cream); }
+  .contact-socials .dot{ width:5px; height:5px; border-radius:50%; background:var(--blush); display:inline-block; }
+
+  .footer{
+    margin-top:48px;
+    text-align:center;
+    font-size:10.5px; letter-spacing:0.24em; text-transform:uppercase;
+    color: rgba(240,242,235,0.55);
+  }
+
+  /* ——— mobile ——— */
+  @media (max-width: 900px){
+    .nav-links{ display:none; }
+    .hamburger{ display:flex; }
+    .nav-cta{ padding:9px 16px; font-size:11px; }
+    .hero-tag-vid, .hero-tag-meta, .hero-scroll{ display:none; }
+    .about{ padding:90px 0 110px; }
+    .about-grid{ grid-template-columns:1fr; gap:56px; }
+    .works{ padding:90px 0 110px; }
+    .section-head{ grid-template-columns:1fr; }
+    .section-head .meta{ text-align:left; }
+    .works-grid{ grid-template-columns: 1fr; gap:32px; }
+    .work.w1, .work.w2, .work.w3, .work.w4{
+      grid-column: 1 / -1; margin-top:0; aspect-ratio: 4/5;
+    }
+    .philo{ padding:90px 0 110px; }
+    .philo-grid{ grid-template-columns:1fr; gap:48px; margin-top:80px; }
+    .ex-row{ grid-template-columns: 80px 1fr; gap:14px; padding:22px 0; }
+    .ex-row .yr{ font-size:22px; }
+    .ex-row .title{ font-size:18px; grid-column: 2; }
+    .ex-row .venue{ grid-column: 2; }
+    .ex-row .place{ grid-column: 2; text-align:left; }
+    .press{ grid-template-columns:1fr; gap:24px; }
+    .contact{ padding:100px 0 40px; }
+    .form{ flex-direction:column; border-radius:18px; padding:14px; }
+    .form input{ padding:14px 12px; text-align:center; width:100%; }
+    .form button{ width:100%; }
+    .contact-socials{ flex-direction:column; text-align:center; gap:14px; }
+  }
+
+  /* reveal */
+  .reveal{ opacity:0; transform:translateY(18px); transition: opacity 800ms ease, transform 800ms ease; }
+  .reveal.in{ opacity:1; transform:none; }
+</style>
+</head>
+<body>
+
+<!-- Tweakable defaults -->
+<script>
+  window.__TWEAKS__ = /*EDITMODE-BEGIN*/{
+    "heroVariant": "video",
+    "navStyle": "frosted",
+    "worksLayout": "asymmetric",
+    "showProcessVideo": true
+  }/*EDITMODE-END*/;
+</script>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="brand">
+      <span class="mark" aria-hidden="true"></span>
+      Flør Jerez Art
+    </a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#exhibitions">Exhibitions</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:16px;">
+      <a href="#contact" class="nav-cta">Enquire</a>
+      <button class="hamburger" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-media" id="heroMedia">
+    <!-- HERO_VIDEO_URL placeholder; using brushstroke painting still as poster -->
+    <img class="ph" id="heroPh" src="assets/hero-brushstrokes.webp" alt="HERO_VIDEO_URL — brushstroke painting" />
+  </div>
+
+  <div class="hero-tag-vid">
+    <span class="dot"></span>
+    HERO_VIDEO_URL · Studio reel · 02:14
+  </div>
+  <div class="hero-tag-meta">
+    <div>Porto · 41.1579° N</div>
+    <div>2014 — 2026</div>
+  </div>
+
+  <div class="hero-content wrap">
+    <div class="hero-eyebrow">
+      <span style="font-size:10.5px; letter-spacing:0.28em; text-transform:uppercase;">Florencia Jerez · Acrylic on canvas</span>
+    </div>
+    <h1 class="hero-title">
+      Painting the space<br/>
+      between <em>nature</em><br/>
+      and <em>emotion</em>.
+    </h1>
+    <div class="hero-sub">Acrylic on canvas — Porto, Portugal</div>
+    <div class="hero-ctas">
+      <a href="#work" class="btn btn-solid">View Works <span class="arrow"></span></a>
+      <a href="#about" class="btn btn-ghost">About Flor</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-copy reveal">
+      <span class="eyebrow">— About the artist</span>
+      <h2>Florencia<br/><em>Jerez.</em></h2>
+      <div class="sub">Argentine artist, Porto-based.</div>
+      <p>My inspiration mainly comes from nature. I observe even the simplest details — plants, light, textures, and color. Painting becomes a space where I let go, allowing emotions to move freely through gesture and take form on the canvas.</p>
+      <p>I explore the contrasts that coexist within us: calm and intensity, fragility and strength, simplicity and depth.</p>
+      <div class="city-tags">
+        <span>Buenos Aires</span><span>Porto</span><span>London</span><span>Paris</span>
+      </div>
+    </div>
+    <div class="about-portrait reveal">
+      <img src="assets/artist-portrait.webp" alt="ARTIST_PHOTO_URL — Florencia Jerez in studio" />
+      <div class="frame-label">ARTIST_PHOTO_URL</div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORKS -->
+<section class="works" id="work">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">— Selected works</span>
+        <h2>A vocabulary of <em>gesture,</em><br/>color and quiet observation.</h2>
+      </div>
+      <div class="meta">
+        2018 — 2025<br/>
+        Acrylic on canvas<br/>
+        Various dimensions
+      </div>
+    </div>
+
+    <div class="works-grid">
+
+      <a class="work w1 reveal" href="#" aria-label="Connection">
+        <div class="img-wrap">
+          <img src="assets/work-connection.webp" alt="ARTWORK_1 — Connection" />
+          <div class="overlay">
+            <div class="label">
+              <p class="t">Connection</p>
+              <div class="y">2024 · Acrylic, 40 × 120 cm</div>
+            </div>
+          </div>
+          <div class="num">ARTWORK_1 / 04</div>
+        </div>
+        <div class="caption">
+          <span class="t2">Connection</span>
+          <span class="meta">2024 · Porto</span>
+        </div>
+      </a>
+
+      <a class="work w2 reveal" href="#" aria-label="Twinkle">
+        <div class="img-wrap">
+          <img src="assets/work-twinkle.webp" alt="ARTWORK_2 — Twinkle" />
+          <div class="overlay">
+            <div class="label">
+              <p class="t">Twinkle</p>
+              <div class="y">2023 · Acrylic, 100 × 140 cm</div>
+            </div>
+          </div>
+          <div class="num">ARTWORK_2 / 04</div>
+        </div>
+        <div class="caption">
+          <span class="t2">Twinkle</span>
+          <span class="meta">2023 · Porto</span>
+        </div>
+      </a>
+
+      <a class="work w3 reveal" href="#" aria-label="Life and Death">
+        <div class="img-wrap">
+          <img src="assets/work-life-death.webp" alt="ARTWORK_3 — Life and Death" />
+          <div class="overlay">
+            <div class="label">
+              <p class="t">Life &amp; Death</p>
+              <div class="y">2022 · Acrylic, 90 × 90 cm</div>
+            </div>
+          </div>
+          <div class="num">ARTWORK_3 / 04</div>
+        </div>
+        <div class="caption">
+          <span class="t2">Life &amp; Death</span>
+          <span class="meta">2022 · Porto</span>
+        </div>
+      </a>
+
+      <a class="work w4 reveal" href="#" aria-label="Chameleon">
+        <div class="img-wrap">
+          <img src="assets/work-chameleon.webp" alt="ARTWORK_4 — Camaleón Grande" />
+          <div class="overlay">
+            <div class="label">
+              <p class="t">Camaleón Grande</p>
+              <div class="y">2021 · Acrylic, 120 × 120 cm</div>
+            </div>
+          </div>
+          <div class="num">ARTWORK_4 / 04</div>
+        </div>
+        <div class="caption">
+          <span class="t2">Camaleón Grande</span>
+          <span class="meta">2021 · Buenos Aires</span>
+        </div>
+      </a>
+
+    </div>
+
+    <div class="works-foot reveal">
+      <a href="#contact" class="link-arrow">Enquire about availability <span class="arrow"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philo">
+  <div class="wrap-narrow reveal" style="padding-top:24px;">
+    <span class="pull-quote-marks">“</span>
+    <p class="pull">I explore contrasts that coexist within us — <em>calm and intensity, fragility and strength, simplicity and depth.</em></p>
+    <div class="pull-attr">— <span>Florencia Jerez</span></div>
+  </div>
+
+  <div class="wrap philo-grid">
+    <div class="video-wrap reveal" id="processVideoWrap">
+      <img id="processVideo" src="assets/process-painting.webp" alt="PROCESS_VIDEO_URL — process reel" style="width:100%;height:100%;object-fit:cover;" />
+      <div class="vid-label">PROCESS_VIDEO_URL</div>
+      <button class="play" id="playBtn" aria-label="Play process reel">
+        <span class="tri" id="playTri"></span>
+      </button>
+    </div>
+    <div class="philo-blocks reveal">
+      <div class="philo-block">
+        <span class="eyebrow">— The work</span>
+        <p>Every painting begins with observation — a plant, a shaft of light, the texture of bark. These quiet details accumulate until they demand to be expressed.</p>
+      </div>
+      <div class="philo-block">
+        <span class="eyebrow">— The process</span>
+        <p>Working in acrylic on large-format canvas, each piece is built through layers of gesture and wash, allowing forms to surface and dissolve until the composition finds its own resolution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXHIBITIONS -->
+<section class="exh" id="exhibitions">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="eyebrow">— Exhibitions &amp; press</span>
+        <h2>A decade of <em>showing work.</em></h2>
+      </div>
+      <div class="meta">
+        Six selected exhibitions<br/>
+        Argentina · UK · Portugal
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="ex-row reveal">
+        <div class="yr">2025</div>
+        <div class="title">Essência Humana</div>
+        <div class="venue">Olga Santos Gallery</div>
+        <div class="place">Porto · Portugal</div>
+      </div>
+      <div class="ex-row reveal">
+        <div class="yr">2024</div>
+        <div class="title">Elements</div>
+        <div class="venue">Roots Restaurant</div>
+        <div class="place">Porto · Portugal</div>
+      </div>
+      <div class="ex-row reveal">
+        <div class="yr">2024</div>
+        <div class="title">Held Ecstatic</div>
+        <div class="venue">Body Painting Event</div>
+        <div class="place">Porto · Portugal</div>
+      </div>
+      <div class="ex-row reveal">
+        <div class="yr">2021</div>
+        <div class="title">Virtual Artists</div>
+        <div class="venue">Online Group Exhibition</div>
+        <div class="place">United Kingdom</div>
+      </div>
+      <div class="ex-row reveal">
+        <div class="yr">2021</div>
+        <div class="title">Color Explosion</div>
+        <div class="venue">Group Exhibition</div>
+        <div class="place">Buenos Aires · Argentina</div>
+      </div>
+      <div class="ex-row reveal">
+        <div class="yr">2018</div>
+        <div class="title">Emotions</div>
+        <div class="venue">Solo Exhibition</div>
+        <div class="place">Tucumán · Argentina</div>
+      </div>
+    </div>
+
+    <div class="press reveal">
+      <span class="eyebrow">— Press &amp; interviews</span>
+      <div class="press-pills">
+        <a href="https://justfocus.fr" target="_blank" rel="noopener" class="press-pill">
+          Interview, justfocus.fr — Paris 2018
+          <span class="ext"></span>
+        </a>
+        <a href="https://youtube.com" target="_blank" rel="noopener" class="press-pill">
+          Interview, Sir Babyface YouTube — Porto 2025
+          <span class="ext"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap-narrow">
+    <span class="eyebrow">— Acquire a work</span>
+    <h2><em>Interested in a piece?</em></h2>
+    <div class="sub">Original works available for purchase and commission.</div>
+
+    <form class="form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Sent ✓'; setTimeout(()=>this.querySelector('button').textContent='Send Enquiry', 2200);">
+      <input type="email" placeholder="Your email address" required />
+      <button type="submit">Send Enquiry</button>
+    </form>
+
+    <div class="contact-socials">
+      <a href="https://instagram.com/flor.jerez.art" target="_blank" rel="noopener">
+        <span class="dot"></span> Instagram &nbsp;·&nbsp; flor.jerez.art
+      </a>
+      <a href="mailto:info@florjerezart.com">
+        info@florjerezart.com &nbsp;<span class="arrow" style="display:inline-block;width:14px;height:0.5px;background:currentColor;position:relative;"></span>
+      </a>
+    </div>
+
+    <div class="footer">© 2025 Flør Jerez Art — Porto, Portugal</div>
+  </div>
+</section>
+
+<!-- React + Babel for Tweaks -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="tweaks.jsx"></script>
+
+<!-- Inline behaviors -->
+<script>
+  // nav scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    if(window.scrollY > 30) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // process video play/pause
+  const v = document.getElementById('processVideo');
+  const playBtn = document.getElementById('playBtn');
+  let playing = false;
+  if(playBtn && v){
+    playBtn.addEventListener('click', ()=>{
+      if(!playing){
+        v.play().catch(()=>{});
+        playBtn.style.opacity = '0';
+        playBtn.style.pointerEvents = 'none';
+        playing = true;
+      }
+    });
+    v.addEventListener('pause', ()=>{
+      playBtn.style.opacity='1'; playBtn.style.pointerEvents='auto'; playing=false;
+    });
+    v.addEventListener('click', ()=>{
+      if(playing){ v.pause(); }
+    });
+  }
+</script>
+
+</body>
+</html>
