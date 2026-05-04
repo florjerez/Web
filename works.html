@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Flør Jerez Art — Works</title>
+<link rel="icon" type="image/png" href="assets/brand/fj-monogram-dark.png" />
+<link rel="apple-touch-icon" href="assets/brand/fj-monogram-dark.png" />
+<style>
+  @font-face{
+    font-family:'The Seasons';
+    src:url('fonts/The Seasons/The Seasons.woff2') format('woff2'),
+        url('fonts/The Seasons/The Seasons.woff') format('woff');
+    font-weight:400;font-style:normal;font-display:swap;
+  }
+  @font-face{
+    font-family:'Helvetica World';
+    src:url('fonts/Helvetica World W08 Regular/Helvetica World W08 Regular.woff2') format('woff2'),
+        url('fonts/Helvetica World W08 Regular/Helvetica World W08 Regular.woff') format('woff');
+    font-weight:400;font-style:normal;font-display:swap;
+  }
+  :root{
+    --cream:#F0F2EB; --green-deep:#3B564D; --green-mid:#7C8966;
+    --green-light:#AFB593; --blush:#E7B4A9; --sage:#D2D5C4;
+    --ink:#2A3A33; --hairline: rgba(59,86,77,0.18);
+    --serif:'The Seasons', serif; --sans:'Helvetica World', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{ background:var(--cream); color:var(--ink); font-family:var(--sans); font-weight:300; -webkit-font-smoothing:antialiased; }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+  em{font-style:normal;}
+  .wrap{ width:min(1320px, 92vw); margin:0 auto; }
+
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:60;
+    padding:18px 0;
+    background:rgba(240,242,235,0.72);
+    backdrop-filter:saturate(140%) blur(14px);
+    -webkit-backdrop-filter:saturate(140%) blur(14px);
+    border-bottom:0.5px solid var(--hairline);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; gap:24px; }
+  .brand{ font-family:var(--serif); font-size:18px; color:var(--green-deep); display:flex; align-items:center; gap:12px; letter-spacing:0.01em; }
+  .brand .mark{ width:32px; height:32px; display:inline-block; background-image:url('assets/brand/fj-monogram-dark.png'); background-size:contain; background-repeat:no-repeat; background-position:center; }
+  .brand .brand-text{ font-size:18px; }
+  @media (max-width: 600px){ .brand .brand-text{ display:none; } }
+  .nav-links{ display:flex; align-items:center; gap:34px; font-size:13px; color:var(--green-deep); }
+  .nav-links a{ position:relative; padding:6px 0; letter-spacing:0.04em; }
+  .nav-links a.current::after{ content:""; position:absolute; left:0; right:0; bottom:0; height:0.5px; background:var(--green-deep); }
+  .nav-cta{
+    font-family:var(--sans); font-size:12.5px; background:var(--green-deep);
+    color:var(--cream); padding:10px 22px; border-radius:999px;
+    letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .lang-switch{ display:inline-flex; align-items:center; gap:6px; font-size:11.5px; letter-spacing:0.16em; color:var(--green-deep); }
+  .lang-switch button{ padding:6px 4px; color:var(--green-mid); letter-spacing:0.16em; }
+  .lang-switch button.active{ color:var(--green-deep); border-bottom:0.5px solid var(--green-deep); }
+  .lang-switch .sep{ color:var(--green-light); }
+  .hamburger{ display:none; width:36px; height:36px; align-items:center; justify-content:center; }
+  .hamburger span{ width:22px; height:0.5px; background:var(--green-deep); position:relative; }
+  .hamburger span::before, .hamburger span::after{ content:""; position:absolute; left:0; right:0; height:0.5px; background:var(--green-deep); }
+  .hamburger span::before{ top:-7px; }
+  .hamburger span::after{ top:7px; }
+
+  .page-head{ padding:200px 0 80px; text-align:center; }
+  .page-head .eyebrow{ font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--green-mid); display:block; margin-bottom:24px; }
+  .page-head h1{
+    font-family:var(--serif); font-weight:300; color:var(--green-deep);
+    font-size:clamp(54px, 7.2vw, 110px); line-height:1.0; letter-spacing:-0.014em;
+    margin:0 auto; max-width:18ch;
+  }
+  .page-head h1 em{ font-style:normal; }
+  .page-head .lede{ margin: 36px auto 0; max-width: 60ch; font-size:15px; line-height:1.75; }
+
+  .works-stack{ display:flex; flex-direction:column; gap:180px; padding-bottom:160px; }
+  .work{ display:flex; flex-direction:column; align-items:center; }
+  .work .img-wrap{
+    width:fit-content; display:flex; justify-content:center; align-items:center;
+    padding:24px; background:var(--sage); border:2px solid var(--green-deep);
+    box-shadow: 0 8px 24px rgba(59,86,77,0.12);
+  }
+  .work img{
+    display:block; width:auto; height:auto; max-height: 78vh;
+    object-fit: contain;
+    transition: transform 1.2s cubic-bezier(.2,.7,.2,1);
+  }
+  .work.size-lg img{ max-width: min(820px, 86vw); max-height: 84vh; }
+  .work.size-md img{ max-width: min(640px, 74vw); max-height: 72vh; }
+  .work.size-sm img{ max-width: min(520px, 64vw); max-height: 64vh; }
+  .work:hover img{ transform: scale(1.01); }
+  .work .caption{ margin-top:28px; text-align:center; display:flex; flex-direction:column; gap:8px; }
+  .work .caption .t2{ font-family:var(--serif); font-style:normal; font-size:22px; color:var(--green-deep); }
+  .work .caption .meta{ font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--green-mid); }
+
+  .back{ margin-top:40px; text-align:center; padding-bottom:80px; }
+  .back a{
+    display:inline-flex; align-items:center; gap:14px;
+    font-size:12px; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--green-deep); border-bottom:0.5px solid var(--green-deep); padding-bottom:8px;
+  }
+  .back a .arr{ width:18px; height:0.5px; background:currentColor; position:relative; }
+  .back a .arr::before{
+    content:""; position:absolute; left:0; top:-3px;
+    width:6px; height:6px; border-bottom:0.5px solid currentColor; border-left:0.5px solid currentColor;
+    transform:rotate(45deg);
+  }
+
+  .footer{ padding:40px 0; text-align:center; font-size:10.5px; letter-spacing:0.24em; text-transform:uppercase; color: rgba(59,86,77,0.55); border-top:0.5px solid var(--hairline); }
+
+  @media (max-width: 900px){
+    .nav-links{ display:none; }
+    .hamburger{ display:flex; }
+    .nav-links.open{ display:flex; flex-direction:column; gap:0; position:absolute; top:100%; left:0; right:0; background:rgba(240,242,235,0.97); backdrop-filter:saturate(140%) blur(14px); -webkit-backdrop-filter:saturate(140%) blur(14px); border-bottom:0.5px solid var(--hairline); padding:8px 0 20px; }
+    .nav-links.open a{ padding:14px 24px; font-size:14px; border-bottom:0.5px solid var(--hairline); }
+    .nav-links.open a:last-child{ border-bottom:none; }
+    .hamburger.open span{ background:transparent; }
+    .hamburger.open span::before, .hamburger.open span::after{ top:0; }
+    .hamburger.open span::before{ transform:rotate(45deg); }
+    .hamburger.open span::after{ transform:rotate(-45deg); }
+    .page-head{ padding:140px 0 40px; }
+    .works-stack{ gap:100px; padding-bottom:80px; }
+    .work img, .work.size-lg img, .work.size-md img, .work.size-sm img{ max-width: 92vw; max-height: 70vh; }
+    .work .img-wrap{ padding:12px; margin:0 8px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="index.html" class="brand" aria-label="Flør Jerez Art">
+      <span class="mark" role="img" aria-label="FJ monogram"></span>
+      <span class="brand-text">Flør Jerez Art</span>
+    </a>
+    <div class="nav-links">
+      <a href="works.html" class="current" data-i18n="nav.work">Work</a>
+      <a href="about.html" data-i18n="nav.about">About</a>
+      <a href="exhibitions.html" data-i18n="nav.exhibitions">Exhibitions</a>
+      <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div class="lang-switch">
+        <button data-lang-btn="en" type="button">EN</button>
+        <span class="sep">/</span>
+        <button data-lang-btn="es" type="button">ES</button>
+      </div>
+      <a href="index.html#contact" class="nav-cta" data-i18n="nav.enquire">Enquire</a>
+      <button class="hamburger" aria-label="Menu"><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="works.eyebrow">— Selected works</span>
+    <h1 data-i18n-html="works.title">A vocabulary of <em>gesture,</em><br/>color and quiet observation.</h1>
+    <p class="lede" data-i18n-html="works.meta">2018 — 2025 · Acrylic on canvas · Various dimensions</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap works-stack">
+    <figure class="work size-lg">
+      <div class="img-wrap"><img src="assets/work-connection.webp" alt="Later" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.connection">Later</span>
+        <span class="meta" data-i18n="work.connectionMeta">2024 · Acrylic, 40 × 120 cm</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-md">
+      <div class="img-wrap"><img src="assets/work-twinkle.webp" alt="Twinkle" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.twinkle">Twinkle</span>
+        <span class="meta" data-i18n="work.twinkleMeta">2023 · Acrylic, 100 × 140 cm</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-sm">
+      <div class="img-wrap"><img src="assets/work-life-death.webp" alt="Life and Death" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n-html="work.lifedeath">Life &amp; Death</span>
+        <span class="meta" data-i18n="work.lifedeathMeta">2022 · Acrylic, 90 × 90 cm</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-lg">
+      <div class="img-wrap"><img src="assets/work-chameleon.webp" alt="Alive" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.chameleon">Alive</span>
+        <span class="meta" data-i18n="work.chameleonMeta">2021 · Acrylic on canvas, 120 × 120 cm</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-md">
+      <div class="img-wrap"><img src="assets/death-star.webp" alt="Death Star" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.untitledI">Death Star</span>
+        <span class="meta" data-i18n="work.untitledIMeta">2021 · Acrylic on canvas, 90 × 60 cm · Sold</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-md">
+      <div class="img-wrap"><img src="assets/hope.webp" alt="Untitled II" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.untitledII">Untitled II</span>
+        <span class="meta" data-i18n="work.untitledIIMeta">2025 · Acrylic on canvas, 80 × 100 cm</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-sm">
+      <div class="img-wrap"><img src="assets/pouring-experiment-3.webp" alt="Pouring experiment num 3" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.untitledIII">Pouring experiment num 3</span>
+        <span class="meta" data-i18n="work.untitledIIIMeta">2018 · Mixed media on canvas, 40 × 30 cm · Sold at an auction in Tucumán, Argentina</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-md">
+      <div class="img-wrap"><img src="assets/florido1.webp" alt="Chaotic beautiful life of Flor 2" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.untitledIV">Chaotic beautiful life of Flor 2</span>
+        <span class="meta" data-i18n="work.untitledIVMeta">2019 · Mixed media on canvas, 160 × 90 cm · Sold</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-md">
+      <div class="img-wrap"><img src="assets/florido2.webp" alt="Chaotic beautiful life of Flor 1" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.untitledV">Chaotic beautiful life of Flor 1</span>
+        <span class="meta" data-i18n="work.untitledVMeta">2019 · Mixed media on canvas, 160 × 90 cm · Sold</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-lg">
+      <div class="img-wrap"><img src="assets/untitled-vi.webp" alt="Untitled VI" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.untitledVI">Untitled VI</span>
+        <span class="meta" data-i18n="work.untitledVIMeta">2025 · Acrylic on canvas, 100 × 140 cm</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-md">
+      <div class="img-wrap"><img src="assets/miscelium-and-magic.webp" alt="Untitled VII" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.untitledVII">Untitled VII</span>
+        <span class="meta" data-i18n="work.untitledVIIMeta">2025 · Acrylic on canvas, 80 × 100 cm</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-md">
+      <div class="img-wrap"><img src="assets/rivers-earth.webp" alt="Rivers-Earth" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.untitledVIII">Rivers-Earth</span>
+        <span class="meta" data-i18n="work.untitledVIIIMeta">2024 · Mixed media on canvas, 80 × 50 cm</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-md">
+      <div class="img-wrap"><img src="assets/paisaje.webp" alt="Paisaje" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.untitledIX">Paisaje</span>
+        <span class="meta" data-i18n="work.untitledIXMeta">2025 · Acrylic on canvas, 90 × 60 cm</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-sm">
+      <div class="img-wrap"><img src="assets/fire.webp" alt="Fire" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.untitledX">Fire</span>
+        <span class="meta" data-i18n="work.untitledXMeta">2025 · Acrylic on wood board, 40 × 80 cm</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-sm">
+      <div class="img-wrap"><img src="assets/flow-the-sisters.webp" alt="Flow (the sisters)" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.untitledXI">Flow (the sisters)</span>
+        <span class="meta" data-i18n="work.untitledXIMeta">2024 · Mixed media on canvas, 100 × 30 cm · Sold</span>
+      </figcaption>
+    </figure>
+    <figure class="work size-sm">
+      <div class="img-wrap"><img src="assets/terra-echoes.webp" alt="Terra echoes" /></div>
+      <figcaption class="caption">
+        <span class="t2" data-i18n="work.untitledXII">Terra echoes</span>
+        <span class="meta" data-i18n="work.untitledXIIMeta">2024 · Mixed media on canvas, 50 × 80 cm</span>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="back">
+    <a href="index.html"><span class="arr"></span> <span data-i18n="exh.back">Back to home</span></a>
+  </div>
+</section>
+
+<div class="footer" data-i18n-html="contact.footer">© 2026 Flør Jerez Art — Porto, Portugal. Todos los derechos reservados. | Desarrollado por <a href="https://www.vanguardcrux.com/" target="_blank" rel="noopener">Vanguard Crux</a></div>
+
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const navLinks = document.querySelector('.nav-links');
+  if(hamburger && navLinks){
+    hamburger.addEventListener('click', ()=>{
+      navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', ()=>{
+      navLinks.classList.remove('open');
+      hamburger.classList.remove('open');
+    }));
+  }
+</script>
+<script src="i18n.js?v=4"></script>
+</body>
+</html>
