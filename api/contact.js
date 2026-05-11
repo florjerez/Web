@@ -44,7 +44,7 @@ export default async function handler(req, res) {
   }
 
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
-  const TO = process.env.CONTACT_TO || 'info@florjerezart.com';
+  const TO = process.env.CONTACT_TO || 'jerezflorencia@gmail.com';
   const FROM = process.env.CONTACT_FROM || 'onboarding@resend.dev';
 
   if (!RESEND_API_KEY) {
